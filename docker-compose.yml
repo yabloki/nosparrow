@@ -4,6 +4,8 @@ services:
     image: commento
     ports:
       - 8080:8080
+    expose:
+        - '8080'
     environment:
       COMMENTO_ORIGIN: http://localhost:8080
       COMMENTO_PORT: 8080
@@ -27,8 +29,8 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'auth'
-      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'ghost'
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
       - '3306:3306'
     expose:
@@ -42,14 +44,18 @@ services:
     depends_on:
       - mysql
     environment:
-      url: localhost
+      url: 'http://127.0.0.1'
       database__client: mysql
       database__connection__host: mysql
       database__connection__user: root
-      database__connection__password: '123456'
+      database__connection__password: 'root'
       database__connection__database: ghost
+    ports:
+        - '2368:2368'
+    expose:
+        - '2368'
     volumes:
-      - /opt/ghost_content:/var/lib/ghost/content
+      - ghost_volume:/var/lib/ghost/content
 
 networks:
   db_network:
@@ -57,3 +63,4 @@ networks:
 volumes:
   my-db:
   postgres_data_volume:
+  ghost_volume:
