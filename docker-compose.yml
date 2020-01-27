@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+  server:
+    image: commento
+    ports:
+      - 8080:8080
+    environment:
+      COMMENTO_ORIGIN: http://localhost:8080
+      COMMENTO_PORT: 8080
+      COMMENTO_POSTGRES: postgres://postgres:postgres@db:5432/commento?sslmode=disable
+    depends_on:
+      - db
+    networks:
+      - db_network
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: commento
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - db_network
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'auth'
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+  ghost:
+    image: ghost_or:latest
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      url: localhost
+      database__client: mysql
+      database__connection__host: mysql
+      database__connection__user: root
+      database__connection__password: '123456'
+      database__connection__database: ghost
+    volumes:
+      - /opt/ghost_content:/var/lib/ghost/content
+
+networks:
+  db_network:
+
+volumes:
+  my-db:
+  postgres_data_volume:

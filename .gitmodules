@@ -1,0 +1,15 @@
+[submodule "Ghost"]
+	path = Ghost
+	url = ./Ghost
+[submodule "commento"]
+	path = commento
+	url = ./commento
+[submodule "metaauth"]
+	path = metaauth
+	url = ./metaauth
+[submodule "ghost"]
+	path = ghost
+	url = ./ghDockerfile
+[submodule "ghDockerfile"]
+	path = ghDockerfile
+	url = ./ghDockerfile
