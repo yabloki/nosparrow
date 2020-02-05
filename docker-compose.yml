@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  server:
+  commento:
     image: commento
     ports:
       - 8080:8080
@@ -56,6 +56,13 @@ services:
         - '2368'
     volumes:
       - ghost_volume:/var/lib/ghost/content
+
+  # metaauth:
+  #   image: metaauth
+  #   ports:
+  #     - 3000:3000
+  #   expose:
+  #       - '3000'
 
 networks:
   db_network:
