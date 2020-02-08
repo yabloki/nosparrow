@@ -64,6 +64,13 @@ services:
   #   expose:
   #       - '3000'
 
+  redis:
+    image: redis
+    expose:
+      - 6379
+    ports:
+      - '6379:6379'
+
 networks:
   db_network:
 
@@ -71,3 +78,4 @@ volumes:
   my-db:
   postgres_data_volume:
   ghost_volume:
+  redis_socket:
