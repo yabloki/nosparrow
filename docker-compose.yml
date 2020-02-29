@@ -61,12 +61,12 @@ services:
     volumes:
       - ghost_volume:/var/lib/ghost/content
 
-  # metaauth:
-  #   image: metaauth
-  #   ports:
-  #     - 3000:3000
-  #   expose:
-  #       - '3000'
+  metaauth:
+    image: metaauth
+    ports:
+      - 3000:3000
+    expose:
+        - '3000'
 
   redis:
     image: redis
