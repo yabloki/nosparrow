@@ -43,7 +43,7 @@ services:
       - my-db:/var/lib/mysql
 
   ghost:
-    image: ghost_or:latest
+    image: ghost:latest
     restart: always
     depends_on:
       - mysql
@@ -63,6 +63,10 @@ services:
 
   metaauth:
     image: metaauth
+    depends_on:
+      - redis
+    links:
+      - redis
     ports:
       - 3000:3000
     expose:
