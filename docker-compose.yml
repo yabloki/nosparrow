@@ -22,6 +22,10 @@ services:
       POSTGRES_PASSWORD: postgres
     networks:
       - db_network
+    ports:
+      - '5432:5432'
+    expose:
+      - '5432'
     volumes:
       - postgres_data_volume:/var/lib/postgresql/data
 
@@ -44,7 +48,7 @@ services:
     depends_on:
       - mysql
     environment:
-      url: 'http://127.0.0.1'
+      url: 'http://localhost:2368'
       database__client: mysql
       database__connection__host: mysql
       database__connection__user: root
