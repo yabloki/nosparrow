@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+  
   commento:
     image: commento
     ports:
@@ -12,16 +13,13 @@ services:
       COMMENTO_POSTGRES: postgres://postgres:postgres@db:5432/commento?sslmode=disable
     depends_on:
       - db
-    networks:
-      - db_network
+  
   db:
     image: postgres
     environment:
       POSTGRES_DB: commento
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    networks:
-      - db_network
     ports:
       - '5432:5432'
     expose:
@@ -65,12 +63,19 @@ services:
     image: metaauth
     depends_on:
       - redis
-    links:
-      - redis
+      - db
     ports:
       - 3000:3000
+      - "9229:9229"
     expose:
         - '3000'
+    environment: 
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    command:
+      - node
+      - "--inspect-brk=0.0.0.0"
+      - "bin/www"
 
   redis:
     image: redis
@@ -78,9 +83,6 @@ services:
       - 6379
     ports:
       - '6379:6379'
-
-networks:
-  db_network:
 
 volumes:
   my-db:
