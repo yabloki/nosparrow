@@ -13,3 +13,6 @@
 [submodule "ghDockerfile"]
 	path = ghDockerfile
 	url = ./ghDockerfile
+[submodule "ethereumContracts"]
+	path = ethereumContracts
+	url = ./ethereumContracts
