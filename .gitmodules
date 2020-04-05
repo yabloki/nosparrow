@@ -16,3 +16,6 @@
 [submodule "ethereumContracts"]
 	path = ethereumContracts
 	url = ./ethereumContracts
+[submodule "coreserver"]
+	path = coreserver
+	url = ./coreserver
