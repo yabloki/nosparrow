@@ -1,19 +1,6 @@
 version: '3.3'
 services:
-  
-  commento:
-    image: commento
-    ports:
-      - 8080:8080
-    expose:
-        - '8080'
-    environment:
-      COMMENTO_ORIGIN: http://localhost:8080
-      COMMENTO_PORT: 8080
-      COMMENTO_POSTGRES: postgres://postgres:postgres@db:5432/commento?sslmode=disable
-    depends_on:
-      - db
-  
+
   db:
     image: postgres
     environment:
@@ -59,14 +46,13 @@ services:
     volumes:
       - ghost_volume:/var/lib/ghost/content
 
-  metaauth:
-    image: metaauth
+  coreserver:
+    image: coreserver:latest
     depends_on:
       - redis
       - db
     ports:
       - 3000:3000
-      - "9229:9229"
     expose:
         - '3000'
     environment: 
@@ -74,7 +60,6 @@ services:
       PGPASSWORD: postgres
     command:
       - node
-      - "--inspect-brk=0.0.0.0"
       - "bin/www"
 
   redis:

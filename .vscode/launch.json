@@ -4,18 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    
         {
             "type": "node",
-            "request": "launch",
-            "name": "deploy.js",
-            "program": "${workspaceFolder}/ethereumContracts/deploy.js",
-            "args": ["164EF2FE12BAC1A03C25436493321AEBC4D9CBA077856CE716EED4D3C69454FA", "local"],
-            "skipFiles": [
-                "<node_internals>/**"
-            ] 
+            "request": "attach",
+            "name": "attach to dockerized CS",
+            "remoteRoot": "/usr/src/app",
+            "localRoot": "${workspaceRoot}/coreserver/"
         },
         {
-            "name": "web3 tests",
+            "name": "contract unit tests",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/ethereumContracts/node_modules/truffle/build/cli.bundled.js",
