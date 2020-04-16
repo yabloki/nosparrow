@@ -18,7 +18,11 @@ services:
         - node
         - /app/ganache-core.docker.cli.js
         - -i
-        - '28'
+        - "28"
+        - --deterministic
+        - --mnemonic
+        - "produce end reduce movie attend scan tone tag someone hour scout spoil"
         - --hostname
-        - '0.0.0.0'
-        - "-l 8000000"
+        - "0.0.0.0"
+        - -l
+        - "8000000"
