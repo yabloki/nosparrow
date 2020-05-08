@@ -1,4 +1,5 @@
 cd /Users/moizik/nosparrow/commento
+make clean
 make devel
 cd -
 export COMMENTO_ORIGIN=http://localhost:8080

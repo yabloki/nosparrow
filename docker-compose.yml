@@ -26,7 +26,7 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
-
+  # SECRET 
   ghost:
     image: ghost:latest
     restart: always
@@ -61,6 +61,11 @@ services:
     command:
       - node
       - "bin/www"
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.rebalancer.no-overlap: "true"
+      ofelia.job-exec.rebalancer.schedule: "@every 10s"
+      ofelia.job-exec.rebalancer.command: "node lib/rebalancer.js"
 
   redis:
     image: redis
@@ -68,7 +73,15 @@ services:
       - 6379
     ports:
       - '6379:6379'
-
+  
+  ofelia:
+    image: mcuadros/ofelia:latest
+    depends_on:
+      - coreserver
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  
 volumes:
   my-db:
   postgres_data_volume:
