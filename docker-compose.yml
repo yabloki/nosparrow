@@ -67,6 +67,17 @@ services:
       ofelia.job-exec.rebalancer.schedule: "@every 10s"
       ofelia.job-exec.rebalancer.command: "node lib/rebalancer.js"
 
+  eventProcessor:
+    image: coreserver:latest
+    depends_on:
+      - db
+    environment:
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    command:
+      - node
+      - "lib/ethEventProcessor.js"
+
   redis:
     image: redis
     expose:
