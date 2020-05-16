@@ -1,3 +1,7 @@
+cd Ghost;
+grunt release;
+docker build -t ghost:custom .;
+cd ../;
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml  down;
 docker-compose  -f docker-compose.yml -f docker-compose.dev.yml up -d db redis mysql ghost ganache;
 cd ./ethereumContracts;

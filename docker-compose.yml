@@ -26,9 +26,10 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
+
   # SECRET 
   ghost:
-    image: ghost:latest
+    image: ghost:custom
     restart: always
     depends_on:
       - mysql
