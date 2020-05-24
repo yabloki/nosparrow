@@ -19,3 +19,9 @@
 [submodule "coreserver"]
 	path = coreserver
 	url = ./coreserver
+[submodule "attila"]
+	path = attila
+	url = ./attila
+[submodule "Ghost-SDK"]
+	path = Ghost-SDK
+	url = ./Ghost-SDK
