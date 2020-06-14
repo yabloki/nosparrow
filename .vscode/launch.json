@@ -9,6 +9,7 @@
             "request": "launch",
             "name": "rebalancer local",
             "cwd": "${workspaceRoot}/coreserver",
+            "env": {"NODE_ENV":"localEnv"},
             "program": "${workspaceFolder}/coreserver/lib/rebalancer.js",
             "skipFiles": [
                 "<node_internals>/**"

@@ -9,7 +9,6 @@ services:
         - node
         - "--inspect-brk=0.0.0.0"
         - "bin/www"
- # SECRET
   ganache:
     image: trufflesuite/ganache-cli:latest
     ports:
