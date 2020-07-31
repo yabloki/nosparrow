@@ -27,6 +27,16 @@
             ]
         },
         {
+            "type": "node",
+            "request": "launch",
+            "name": "debug admin",
+            "cwd": "${workspaceRoot}/coreserver",
+            "program": "${workspaceFolder}/coreserver/lib/ghostAdminApi.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
             "name": "Attach to Commento",
             "type": "go",
             "request": "attach",
